@@ -1,15 +1,23 @@
 function convertToRoman(num) {
-  	const obj = {
-      0:['M',1000], 
-      1:['D', 500], 
-      2:['C', 100], 
-      3:['L', 50], 
-      4:['X', 10], 
-      5:['V', 5], 
-      6:['I', 1]
-    };
+//Break the number into Thousands, Hundreds, Tens and Ones, and write down each in turn.
+//get the digits
+const numStr=num.toString();
+const len=numStr.length;
+let Thousands=0,Hundreds= 0,Tens= 0;
+if(len>=2){Tens=parseInt(numStr[len-1-1]);}
+if(len>=3){Hundreds=parseInt(numStr[len-1-2]);}
+if(len==4){Thousands=parseInt(numStr[0]);}
+const Ones=num%10;
+const lookup=[
+    ["","I","II","III","IV","V","VI","VII","VIII","IX"],
+    ["","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"],
+    ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"],
+    ["","M","MM","MMM"]];
+return lookup[3][Thousands]+lookup[2][Hundreds]+
+lookup[1][Tens]+lookup[0][Ones];
+}
 
-  //your code here
+convertToRoman(36);
 
 }
 // You can test your code by running the above function and printing it to console by pressing the run button at the top. To run it with input 36, uncomment the following line
